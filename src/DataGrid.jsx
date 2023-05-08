@@ -56,8 +56,7 @@ function CeloDataGrid() {
       var formattedData = [];
       for (let index = 0; index < parsedData.repo.length; index++) {
           var json = {};
-          json["key"] = index;
-        //   json["id"] = parsedData.repo[index].url;
+          json["id"] = index;
           json["title"] = parsedData.title;
           json["repo"] = parsedData.repo[index].url
           formattedData.push(json);
@@ -70,21 +69,9 @@ function CeloDataGrid() {
   }, []);
 
   const columns = [
-    {
-      name: "Key",
-      selector: (row) => row.key,
-      sortable: true
-    },
-    {
-      name: "Title",
-      selector: (row) => row.title,
-      sortable: true
-    },
-    {
-      name: "Repo",
-      selector: (row) => row.repo,
-      sortable: true
-    }
+    { key: "id", name: "ID" },
+    { key: "title", name: "Title" },
+    { key: "repo", name: "Repo" }
   ];
 
   if (!data) {
@@ -92,13 +79,7 @@ function CeloDataGrid() {
   }
 
   console.log(data, JSON.stringify(data));
-  return <ReactDataGrid columns={columns} rows={data} rowKey="id" />;
-// return (
-//     <ReactDataGrid
-//       columns={columns}
-//       rows={data.map((row) => ({ ...row, key: row.id }))}
-//     />
-//   );
+  return <ReactDataGrid columns={columns} rows={data}  />;
 }
 
 export default CeloDataGrid;
